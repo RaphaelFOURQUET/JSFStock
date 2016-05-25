@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+
+<h:head>
+	<meta charset="utf-8" />
+	<title>Inscription</title>
+	<h:outputStylesheet library="default" name="stocks.css" />
+	<f:loadBundle basename="fr.adaming.bundle.messages" var="msg"/>
+	<img src="resources/img/LogoJSF.png"/>
+</h:head>
+
+<h:body>
+	<h:form>
+		<fieldset>
+			<legend>Inscription</legend>
+			
+			<h:outputLabel for="nom">Nom<span class="requis">*</span>
+			</h:outputLabel>
+			<h:inputText id="nom" value="#{inscriptionBean.client.nom}"
+				binding="#{composantNom}" size="20" maxlength="20" required="true">
+				<f:ajax event="blur" render="nomMessage"></f:ajax>
+				<f:attribute name="composantNom" value="#{composantNom}"></f:attribute>
+			</h:inputText>
+<!-- 			<h:message id="nomMessage" for="nom" errorClass="erreur" />
+ -->			<br />
+			
+			<h:outputLabel for="prenom">Prenom<span class="requis">*</span>
+			</h:outputLabel>
+			<h:inputText id="prenom" value="#{inscriptionBean.client.prenom}"
+				binding="#{composantPrenom}" size="20" maxlength="20" required="true">
+				<f:ajax event="blur" render="prenomMessage"></f:ajax>
+				<f:attribute name="composantPrenom" value="#{composantPrenom}"></f:attribute>
+			</h:inputText>
+<!-- 			<h:message id="prenomMessage" for="prenom" errorClass="erreur" />
+ -->			<br />
+			
+			<h:outputLabel for="telephone">Telephone<span class="optionnel"></span>
+			</h:outputLabel>
+			<h:inputText id="telephone" value="#{inscriptionBean.client.telephone}"
+				binding="#{composantTelephone}" size="10" maxlength="10" required="false">
+				<f:ajax event="blur" render="telephoneMessage"></f:ajax>
+				<f:attribute name="composantTelephone" value="#{composantTelephone}"></f:attribute>
+			</h:inputText>
+<!-- 			<h:message id="telephoneMessage" for="telephone" errorClass="erreur" />
+ -->			<br />
+			
+			<h:outputLabel for="email">Email<span class="requis">*</span>
+			</h:outputLabel>
+			<h:inputText id="email" value="#{inscriptionBean.client.email}"
+				binding="#{composantEmail}" size="50" maxlength="50" required="true">
+				<f:ajax event="blur" render="emailMessage"></f:ajax>
+				<f:validator binding="#{existenceEmailValidator}" />
+				<f:attribute name="composantEmail" value="#{composantEmail}"></f:attribute>
+			</h:inputText>
+<!-- 			<h:message id="emailMessage" for="email" errorClass="erreur" />
+ -->			<br />
+			
+			<h:outputLabel for="password">Mot de passe <span
+					class="requis">*</span>
+			</h:outputLabel>
+			<h:inputSecret id="password"
+				value="#{inscriptionBean.client.password}"
+				binding="#{composantPassword}" size="20" maxlength="20" required="true">
+				<f:ajax event="blur" execute="password confirmation"
+					render="passwordMessage confirmationMessage"></f:ajax>
+				<!-- Blur : Perdre le focus sur mon input -->
+			</h:inputSecret>
+ 			<h:message id="passwordMessage" for="password" errorClass="erreur" />
+			<br />
+
+			<h:outputLabel for="confirmation">Confirmation du mot de passe <span
+					class="requis">*</span>
+			</h:outputLabel>
+			<h:inputSecret id="confirmation"
+				value="#{inscriptionBean.client.password}" size="20"
+				maxlength="20" required="true">
+				<f:ajax event="blur" execute="password confirmation"
+					render="confirmationMessage passwordMessage" />
+				<f:attribute name="composantPassword" value="#{composantPassword}"></f:attribute>
+ 				<f:validator validatorId="confirmationPasswordValidator" />
+			</h:inputSecret>
+			<h:message id="confirmationMessage" for="confirmation"
+				errorClass="erreur" />
+			<br />
+			
+			<h:messages globalOnly="true" infoClass="info" />
+
+			<h:commandButton value="Inscription"
+				action="#{inscriptionBean.inscrire}" styleClass="sansLabel" />
+			
+			<br />
+		</fieldset>
+	</h:form>
+</h:body>
+
+</html>

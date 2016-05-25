@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="fr" xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+<h:head>
+	<title>Accueil</title>
+	<meta charset="utf-8" />
+	<h:outputStylesheet library="default" name="stocks.css" />
+	<f:loadBundle basename="fr.adaming.bundle.messages" var="msg"/>
+	<img src="resources/img/LogoJSF.png"/>
+</h:head>
+<h:body>
+
+	<h:form>
+		<fieldset>
+			<legend>Connection</legend>
+			
+			<!-- TODO modif value & actions ? -->
+
+			<h:outputLabel for="email">Email<span class="requis">*</span>
+			</h:outputLabel>
+			<h:inputText id="email" value="#{connectionBean.client.email}"
+				binding="#{composantEmail}" size="50" maxlength="50">
+				<f:ajax event="blur" render="emailMessage"></f:ajax>
+				<f:attribute name="composantEmail" value="#{composantEmail}"></f:attribute>
+			</h:inputText>
+			<h:message id="emailMessage" for="email" errorClass="erreur" />
+			<br />
+
+			<h:outputLabel for="password">Mot de passe <span
+					class="requis">*</span>
+			</h:outputLabel>
+			<h:inputSecret id="password"
+				value="#{connectionBean.client.password}"
+				binding="#{composantPassword}" size="20" maxlength="20">
+				<f:ajax event="blur" execute="password confirmation"
+					render="passwordMessage confirmationMessage"></f:ajax>
+			</h:inputSecret>
+			<h:message id="passwordMessage" for="password" errorClass="erreur" />
+			<br />
+			
+			<h:messages globalOnly="true" infoClass="info" />
+
+			<h:commandButton value="Connection"
+				action="#{connectionBean.connect}" styleClass="sansLabel" />
+
+			<br />
+		</fieldset>
+	</h:form>
+	<h:form>
+		Pas encore inscrit ?
+		<a href="inscription.xhtml">Inscription</a>
+	</h:form>
+	
+</h:body>
+</html>

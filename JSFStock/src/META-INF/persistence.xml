@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence version="2.0" xmlns="http://java.sun.com/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://java.sun.com/xml/ns/persistence 
+                        http://java.sun.com/xml/ns/persistence/persistence_2_0.xsd">
+    <persistence-unit name="MySQL" transaction-type="JTA">
+        <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
+
+        <jta-data-source>jdbc/MySQL</jta-data-source>
+
+        <class>fr.adaming.entity.Client</class>
+        <class>fr.adaming.entity.Article</class>
+        <class>fr.adaming.entity.Adresse</class>
+        <class>fr.adaming.entity.Categorie</class>
+        <class>fr.adaming.entity.Commande</class>
+        <class>fr.adaming.entity.LigneCommande</class>
+
+        <properties>
+            <property name="hibernate.transaction.jta.platform" value="org.hibernate.service.jta.platform.internal.SunOneJtaPlatform" />
+            
+            <!-- validate, update, create, create-drop -->
+            <property name="hibernate.hbm2ddl.auto" value="update"/>
+            <property name="hibernate.dialect" value="org.hibernate.dialect.MySQL5Dialect"/>
+            
+            <!-- Affichage des requetes formatées. -->
+            <!-- <property name="hibernate.show_sql" value="true" />
+			<property name="hibernate.format_sql" value="true" />
+			<property name="hibernate.use_sql_comments" value="true" /> -->
+        </properties>
+    </persistence-unit>
+</persistence>
+
