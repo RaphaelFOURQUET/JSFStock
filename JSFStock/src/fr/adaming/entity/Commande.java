@@ -11,6 +11,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 
 import fr.adaming.entity.LigneCommande;
@@ -20,6 +22,8 @@ import fr.adaming.entity.LigneCommande;
  *
  */
 @Entity
+@NamedQuery(name="findCommande",
+	query="select u from Commande u where u.id=:id")
 public class Commande {
 	
 	@Id @GeneratedValue(strategy=GenerationType.IDENTITY)
@@ -28,6 +32,9 @@ public class Commande {
 	private double montantTotal;
 	@OneToMany
 	List<LigneCommande> lignes = new ArrayList<LigneCommande>();
+	
+	@ManyToOne
+	private Client createur;
 	
 	public Date getDateCommande() {
 		return dateCommande;
@@ -55,6 +62,14 @@ public class Commande {
 
 	public void setLignes(List<LigneCommande> lignes) {
 		this.lignes = lignes;
+	}
+
+	public Client getCreateur() {
+		return createur;
+	}
+
+	public void setCreateur(Client createur) {
+		this.createur = createur;
 	}
 
 	public Commande() {

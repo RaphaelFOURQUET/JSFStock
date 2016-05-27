@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="fr" xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+<h:head>
+	<meta charset="utf-8" />
+	<title>Passer commande</title>
+	<h:outputStylesheet library="default" name="stocks.css" />
+	<img src="resources/img/LogoJSF.png" />
+</h:head>
+<h:body>
+	<h:form>
+		<fieldset>
+			<legend>Commande en cours</legend>
+
+			<h:outputLabel for="categorie">Catégorie: #{commandeBean.categorie.libelle}<span
+					class="requis" id="categorieOut"></span>
+					<f:ajax event="blur" />
+			</h:outputLabel>
+			
+			<h:selectOneMenu value="#{commandeBean.categorie}" id="categorie">
+				<f:selectItems value="#{commandeBean.categories}"/>
+				<f:ajax event="change" render="categorie categorieOut categorieIn tableCategories"/>
+				<!-- <f:attribute name="composantCategorie" value="#{composantCategorie}"/> -->
+			</h:selectOneMenu>
+			
+			<h:inputText id="categorieIn" value="#{commandeBean.categorie.libelle}"/>
+			<!-- <h:selectOneRadio layout="pageDirection" value="#{commandeBean.categorie}" id="categorie">
+				<f:selectItems value="#{commandeBean.categories}"/>
+				<f:ajax event="change" render="categorie categorieOut tableCategories"/>
+			</h:selectOneRadio> -->
+			<br />
+
+			<!-- Afficher articles correspondant à catégorie -->
+			
+		</fieldset>
+	</h:form>
+	TEST56 #{commandeBean.categorie.libelle}
+	<br/>
+	TODO montant total.
+	<br/>
+	<a href="vueCommande.xhtml">Valider</a>
+</h:body>
+</html>

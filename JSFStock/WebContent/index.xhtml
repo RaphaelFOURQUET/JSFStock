@@ -15,8 +15,6 @@
 	<h:form>
 		<fieldset>
 			<legend>Connection</legend>
-			
-			<!-- TODO modif value & actions ? -->
 
 			<h:outputLabel for="email">Email<span class="requis">*</span>
 			</h:outputLabel>
@@ -25,7 +23,7 @@
 				<f:ajax event="blur" render="emailMessage"></f:ajax>
 				<f:attribute name="composantEmail" value="#{composantEmail}"></f:attribute>
 			</h:inputText>
-			<h:message id="emailMessage" for="email" errorClass="erreur" />
+			<!-- <h:message id="emailMessage" for="email" errorClass="erreur" /> -->
 			<br />
 
 			<h:outputLabel for="password">Mot de passe <span
@@ -37,7 +35,7 @@
 				<f:ajax event="blur" execute="password confirmation"
 					render="passwordMessage confirmationMessage"></f:ajax>
 			</h:inputSecret>
-			<h:message id="passwordMessage" for="password" errorClass="erreur" />
+			<!-- <h:message id="passwordMessage" for="password" errorClass="erreur" /> -->
 			<br />
 			
 			<h:messages globalOnly="true" infoClass="info" />

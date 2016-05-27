@@ -38,6 +38,8 @@ public class ClientBean implements Serializable {
 	// Initialisation de l'entité client
     public ClientBean() {
     	client = (Client) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("client");
+//    	int id = (int) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("clientId");
+//    	this.client = clientDao.findClient(id);
     }
 
 }

@@ -27,6 +27,10 @@ public class Categorie {
 		this.libelle = libelle;
 	}
 	
+	public void setId(int id) {	//TODO supprimer
+		this.id = id;
+	}
+	
 	public int getId() {
 		return id;
 	}
@@ -39,6 +43,14 @@ public class Categorie {
 		super();
 		this.libelle = libelle;
 	}
+
+	@Override
+	public String toString() {
+		//return "Categorie [libelle=" + libelle + "]";
+		return libelle;
+	}
+	
+	
 	
 	
 

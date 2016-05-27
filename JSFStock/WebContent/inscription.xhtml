@@ -25,8 +25,8 @@
 				<f:ajax event="blur" render="nomMessage"></f:ajax>
 				<f:attribute name="composantNom" value="#{composantNom}"></f:attribute>
 			</h:inputText>
-<!-- 			<h:message id="nomMessage" for="nom" errorClass="erreur" />
- -->			<br />
+ 			<h:message id="nomMessage" for="nom" errorClass="erreur" />
+			<br />
 			
 			<h:outputLabel for="prenom">Prenom<span class="requis">*</span>
 			</h:outputLabel>
@@ -35,15 +35,15 @@
 				<f:ajax event="blur" render="prenomMessage"></f:ajax>
 				<f:attribute name="composantPrenom" value="#{composantPrenom}"></f:attribute>
 			</h:inputText>
-<!-- 			<h:message id="prenomMessage" for="prenom" errorClass="erreur" />
- -->			<br />
+ 			<h:message id="prenomMessage" for="prenom" errorClass="erreur" />
+			<br />
 			
 			<h:outputLabel for="telephone">Telephone<span class="optionnel"></span>
 			</h:outputLabel>
 			<h:inputText id="telephone" value="#{inscriptionBean.client.telephone}"
 				binding="#{composantTelephone}" size="10" maxlength="10" required="false">
-				<f:ajax event="blur" render="telephoneMessage"></f:ajax>
-				<f:attribute name="composantTelephone" value="#{composantTelephone}"></f:attribute>
+<!-- 				<f:ajax event="blur" render="telephoneMessage"></f:ajax>
+ -->				<f:attribute name="composantTelephone" value="#{composantTelephone}"></f:attribute>
 			</h:inputText>
 <!-- 			<h:message id="telephoneMessage" for="telephone" errorClass="erreur" />
  -->			<br />
@@ -56,8 +56,8 @@
 				<f:validator binding="#{existenceEmailValidator}" />
 				<f:attribute name="composantEmail" value="#{composantEmail}"></f:attribute>
 			</h:inputText>
-<!-- 			<h:message id="emailMessage" for="email" errorClass="erreur" />
- -->			<br />
+ 			<h:message id="emailMessage" for="email" errorClass="erreur" />
+			<br />
 			
 			<h:outputLabel for="password">Mot de passe <span
 					class="requis">*</span>

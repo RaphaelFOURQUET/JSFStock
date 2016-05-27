@@ -22,11 +22,8 @@ public class ClientDao {
 	private EntityManager em;
 	
 	public void addClient(Client client) {
-		em.persist(client);
-	}
-
-	public void connectClient() {
-		//TODO
+		if(client != null)
+			em.persist(client);
 	}
 
 	@SuppressWarnings("unchecked")
@@ -54,9 +51,12 @@ public class ClientDao {
 		return client;
 	}
 	
-	public boolean exist(Client client) {
+	public void editClient() {
 		//TODO
-		return false;
+	}
+	
+	public void deleteClient(Client client) {
+		em.remove(client);
 	}
 	
 	

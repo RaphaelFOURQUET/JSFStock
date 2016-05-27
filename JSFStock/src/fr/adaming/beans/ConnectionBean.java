@@ -49,6 +49,7 @@ public class ConnectionBean implements Serializable {
     			this.client = c;
     			f.addMessage( null, new FacesMessage( "Conecté !" ) );
     			f.getExternalContext().getSessionMap().put("client", this.client);
+//    			f.getExternalContext().getSessionMap().put("clientId", this.client.getId());
     			try {
 					f.getExternalContext().redirect("clientVue.xhtml");
 				} catch (IOException e) {
