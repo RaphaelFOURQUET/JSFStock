@@ -25,6 +25,8 @@ public class Article {
 	private double prixUnitaire = 0;
 	private int qteStock;
 	
+	private int qteVoulue = 0;//moche, pour affichage ...
+	
 	public Categorie getCategorie() {
 		return categorie;
 	}
@@ -69,6 +71,14 @@ public class Article {
 		return id;
 	}
 	
+	public int getQteVoulue() {
+		return qteVoulue;
+	}
+
+	public void setQteVoulue(int qteVoulue) {
+		this.qteVoulue = qteVoulue;
+	}
+
 	public Article() {
 		
 	}
@@ -81,6 +91,14 @@ public class Article {
 		this.prixUnitaire = prixUnitaire;
 		this.qteStock = qteStock;
 	}
+
+	@Override
+	public String toString() {
+		return "Article [id=" + id + ", categorie=" + categorie + ", designation=" + designation + ", description="
+				+ description + ", prixUnitaire=" + prixUnitaire + ", qteStock=" + qteStock + ", qteVoulue=" + qteVoulue
+				+ "]";
+	}
+	
 	
 	
 

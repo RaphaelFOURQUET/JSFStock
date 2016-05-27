@@ -26,6 +26,7 @@ public class CommandeBean implements Serializable {
 
 	private Commande commande;
 	private Categorie categorie;
+//	private Article articleCourant;
 	
 	@EJB
 	private CommandeDao commandeDao;
@@ -46,13 +47,26 @@ public class CommandeBean implements Serializable {
 		this.categorie = categorie;
 	}
 
+//	public Article getArticleCourant() {
+//		return articleCourant;
+//	}
+//
+//	public void setArticleCourant(Article articleCourant) {
+//		this.articleCourant = articleCourant;
+//	}
+
+	public void setCommande(Commande commande) {
+		this.commande = commande;
+	}
+
 	// Initialisation de l'entité
     public CommandeBean() {
     	commande = new Commande();
     	categorie = new Categorie();/*categorieDao.getFirstCategorie();*/
+    	//articleCourant = new Article();
     	//test
-//    	categorie.setId(1);	//TODO supprimer et ajouter la modif categorie par vue
-//    	categorie.setLibelle("Homme");
+    	categorie.setId(1);	//TODO supprimer et ajouter la modif categorie par vue
+    	categorie.setLibelle("Homme");
     	System.out.println("########################Talk to me !");
     }
     
@@ -67,7 +81,8 @@ public class CommandeBean implements Serializable {
     public List<Article> getArticlesByCategorie() {
     	if(categorie.getLibelle().equals("")||categorie.getLibelle()==null)
     		return new ArrayList<Article>();
-    	List<Article> l = articleDao.findArticleByCategorie(categorie);
+    	//List<Article> l = articleDao.findArticleByCategorie(categorie);
+    	List<Article> l = articleDao.findArticleByCategorie(categorieDao.getCategorieByLibelle(categorie.getLibelle()));	//libelle correct mais pas id ...
     	if(l==null)
     		return new ArrayList<Article>();
     	return l;
@@ -76,6 +91,12 @@ public class CommandeBean implements Serializable {
     public Categorie getCategorieByLibelle(String libelle) {
     	return categorieDao.getCategorieByLibelle(libelle);
     	
+    }
+    
+    public double getPrixTotal() {
+    	//TODO
+    	return 0;
+//    	return this.articleCourant.getQteVoulue()*this.articleCourant.getPrixUnitaire();
     }
 
 }

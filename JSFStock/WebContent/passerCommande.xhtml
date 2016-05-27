@@ -14,32 +14,75 @@
 		<fieldset>
 			<legend>Commande en cours</legend>
 
-			<h:outputLabel for="categorie">Catégorie: #{commandeBean.categorie.libelle}<span
-					class="requis" id="categorieOut"></span>
-					<f:ajax event="blur" />
+			<h:outputLabel for="categorie">Catégorie:<span
+					class="requis" id="categorieOut"/>
+				<f:ajax event="blur" />
 			</h:outputLabel>
-			
-			<h:selectOneMenu value="#{commandeBean.categorie}" id="categorie">
-				<f:selectItems value="#{commandeBean.categories}"/>
-				<f:ajax event="change" render="categorie categorieOut categorieIn tableCategories"/>
+
+			<h:selectOneMenu value="#{commandeBean.categorie.libelle}" id="categorie">
+				<f:selectItems value="#{commandeBean.categories}" var="cat" itemValue="#{cat.libelle}" itemLabel="#{cat.libelle}"/>
+				<f:ajax event="change"
+					render="categorieIn tableCategories" />
 				<!-- <f:attribute name="composantCategorie" value="#{composantCategorie}"/> -->
 			</h:selectOneMenu>
-			
-			<h:inputText id="categorieIn" value="#{commandeBean.categorie.libelle}"/>
-			<!-- <h:selectOneRadio layout="pageDirection" value="#{commandeBean.categorie}" id="categorie">
-				<f:selectItems value="#{commandeBean.categories}"/>
-				<f:ajax event="change" render="categorie categorieOut tableCategories"/>
-			</h:selectOneRadio> -->
-			<br />
+
+			<!-- <h:inputText id="categorieIn"
+				value="#{commandeBean.categorie.libelle}" />
+			<br /> -->
 
 			<!-- Afficher articles correspondant à catégorie -->
+			<h:dataTable value="#{commandeBean.articlesByCategorie}" var="article"
+				cellspacing="4" id="tableCategories">
+<!-- 				<h:column>
+					<h:outputText value="#{commandeBean.articleCourant}"/>
+					<h:inputText disabled="true"
+				value="#{article.designation}" />
+				</h:column> -->
+				<h:column>
+					<f:facet name="header">
+						<h:outputText value="Nom" />
+					</f:facet>
+					<h:outputText value="#{article.designation}" />
+				</h:column>
+				<h:column>
+					<f:facet name="header">
+						<h:outputText value="Description" />
+					</f:facet>
+					<h:outputText value="#{article.description}" />
+				</h:column>
+				<h:column>
+					<f:facet name="header">
+						<h:outputText value="Prix" />
+					</f:facet>
+					<h:outputText value="#{article.prixUnitaire}" />
+				</h:column>
+				<h:column>
+					<f:facet name="header">
+						<h:outputText value="Qtite" />
+					</f:facet>
+					<h:inputText value="#{article.qteVoulue}" >
+						<f:ajax event="change"
+					render="tableCategories" />
+					</h:inputText>
+				</h:column>
+				<h:column>
+					<f:facet name="header">
+						<h:outputText value="Prix Total" />
+					</f:facet>
+					<h:outputText value="#{commandeBean.prixTotal}" />
+				</h:column>
+				<!-- <h:column>
+					<f:facet name="header">
+						<h:outputText value="Ajouter" />
+					</f:facet>
+					<h:selectBooleanCheckbox />
+				</h:column> -->
+			</h:dataTable>
 			
 		</fieldset>
 	</h:form>
-	TEST56 #{commandeBean.categorie.libelle}
-	<br/>
 	TODO montant total.
-	<br/>
+	<br />
 	<a href="vueCommande.xhtml">Valider</a>
 </h:body>
 </html>

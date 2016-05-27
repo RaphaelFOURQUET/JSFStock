@@ -28,7 +28,7 @@ public class Client {
 	@NotNull
 	private String prenom;
 	
-	private int telephone;
+	private Integer telephone;
 	@NotNull
 	@Pattern( regexp = "([^.@]+)(\\.[^.@]+)*@([^.@]+\\.)+([^.@]+)", message = "Merci de saisir une adresse mail valide" )
 	private String email;
@@ -57,11 +57,11 @@ public class Client {
 		this.prenom = prenom;
 	}
 	
-	public int getTelephone() {
+	public Integer getTelephone() {
 		return telephone;
 	}
 	
-	public void setTelephone(int telephone) {
+	public void setTelephone(Integer telephone) {
 		this.telephone = telephone;
 	}
 	
